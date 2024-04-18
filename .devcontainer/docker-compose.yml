@@ -1,0 +1,31 @@
+version: "3"
+services:
+    rstudio:
+        env_file: ../.env
+        build:
+            dockerfile: ./Dockerfile
+        volumes:
+            - ../workspace:/home/rstudio/workspace:cached
+            - ../utils:/home/rstudio/utils:cached
+
+            # Mount cache directory used by `renv` and `pak`
+            - ~/.cache/R/renv-linux:/home/rstudio/.cache/R/renv
+            - ~/.cache/R/pkgcache-linux:/home/rstudio/.cache/R/pkgcache
+
+            # Global RStudio config
+            - ~/.config/rstudio-linux:/home/rstudio/.config/rstudio
+        ports:
+            - "8787:8787"
+        environment:
+            - TZ=Asia/Tokyo
+            - DISABLE_AUTH=true
+            - RENV_PATHS_ROOT=/home/rstudio/.cache/R/renv
+
+        # Uncomment the next four lines if you will use a ptrace-based debugger like C++, Go, and Rust.
+        # cap_add:
+        #   - SYS_PTRACE
+        # security_opt:
+        #   - seccomp:unconfined
+
+        # Overrides default command so things don't shut down after the process ends.
+        # command: /bin/sh -c "while sleep 1000; do :; done"
