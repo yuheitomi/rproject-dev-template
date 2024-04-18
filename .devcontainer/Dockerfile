@@ -6,12 +6,9 @@ RUN \
     --mount=type=cache,target=/var/cache/apt/archives \ 
     apt-get update && apt-get install -y \
     openssh-client \
-    libgit2-dev \
     fonts-ipaexfont \
-    fonts-noto-cjk
-
-# Install dependencies for tidyverse
-RUN apt-get install -y \
+    fonts-noto-cjk \
+    # Install dependencies for tidyverse
     libfreetype6-dev \
     libfontconfig1-dev \
     libfribidi-dev \
@@ -19,6 +16,9 @@ RUN apt-get install -y \
     libicu-dev \
     libtiff-dev \
     libxml2-dev \
-    pandoc
+    pandoc \
+    # Install dependencies for usethis
+    libgit2-dev
+
 
 RUN R -e "install.packages('renv')"
