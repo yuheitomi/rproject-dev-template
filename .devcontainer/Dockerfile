@@ -22,3 +22,5 @@ RUN \
 
 
 RUN R -e "install.packages('renv')"
+
+RUN echo "copilot-enabled=1\\n" >> /etc/rstudio/rsession.conf
