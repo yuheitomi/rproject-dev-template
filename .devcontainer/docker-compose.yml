@@ -8,14 +8,15 @@ services:
             - ../utils:/home/rstudio/utils:cached
 
             # Mount cache directory used by `renv` and `pak`
-            - ~/.cache/R/renv-linux:/home/rstudio/.cache/R/renv
-            - ~/.cache/R/pkgcache-linux:/home/rstudio/.cache/R/pkgcache
+            - ~/.cache/R/renv:/home/rstudio/.cache/R/renv
+            - ~/.cache/R/pkgcache:/home/rstudio/.cache/R/pkgcache
 
             # Global RStudio config
-            - ~/.config/rstudio-linux:/home/rstudio/.config/rstudio
+            - ~/.config/rstudio-server:/home/rstudio/.config/rstudio
         ports:
             - "8787:8787"
         environment:
+            - LC_ALL=en_US.UTF-8
             - TZ=Asia/Tokyo
             - DISABLE_AUTH=true
             - RENV_CONFIG_PAK_ENABLED=TRUE
