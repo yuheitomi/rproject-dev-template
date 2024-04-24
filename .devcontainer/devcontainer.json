@@ -1,10 +1,10 @@
 {
     "name": "${localWorkspaceFolderBasename}",
-    "dockerComposeFile": ["./docker-compose.yml"],
+    "dockerComposeFile": [ "./docker-compose.yml" ],
     "service": "rstudio",
     "workspaceFolder": "/home/rstudio",
 
     // "none" or "stopCompose"
-    "shutdownAction": "none",
+    "shutdownAction": "stopCompose",
     "remoteUser": "rstudio"
 }

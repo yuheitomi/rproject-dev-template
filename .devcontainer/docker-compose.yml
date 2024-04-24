@@ -4,7 +4,7 @@ services:
         build:
             dockerfile: ./Dockerfile
         volumes:
-            - ../workspace:/home/rstudio/:cached
+            - ../projects:/home/rstudio/projects:cached
             - ../utils:/home/rstudio/utils:cached
 
             # Mount cache directory used by `renv` and `pak`
@@ -13,6 +13,7 @@ services:
 
             # Global RStudio config
             - ~/.config/rstudio-server:/home/rstudio/.config/rstudio
+            - ~/.config/github-copilot:/home/rstudio/.config/github-copilot
         ports:
             - "8787:8787"
         environment:
