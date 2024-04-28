@@ -1,4 +1,3 @@
-version: "3"
 services:
     rstudio:
         build:
@@ -8,9 +7,10 @@ services:
             - ../utils:/home/rstudio/utils:cached
 
             # Mount cache directory used by `renv` and `pak`
-            - ~/.cache/R/renv:/home/rstudio/.cache/R/renv
-            - ~/.cache/R/pkgcache:/home/rstudio/.cache/R/pkgcache
-            - ~/.cache/rstudio-server:/home/rstudio/.cache/rstudio
+            # - ~/.cache/R/renv:/home/rstudio/.cache/R/renv
+            # - ~/.cache/R/pkgcache:/home/rstudio/.cache/R/pkgcache
+            # - ~/.cache/rstudio-server:/home/rstudio/.cache/rstudio
+            - R-cache:/home/rstudio/.cache
 
             # Global RStudio config
             - ~/.config/rstudio-server:/home/rstudio/.config/rstudio
@@ -23,3 +23,9 @@ services:
             - DISABLE_AUTH=true
             - RENV_CONFIG_PAK_ENABLED=TRUE
             - RENV_PATHS_ROOT=/home/rstudio/.cache/R/renv
+
+        command: chown -R rstudio:rstudio /home/rstudio/.cache
+
+volumes:
+    R-cache:
+        name: R-cache
