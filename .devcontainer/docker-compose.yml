@@ -10,6 +10,7 @@ services:
             # Mount cache directory used by `renv` and `pak`
             - ~/.cache/R/renv:/home/rstudio/.cache/R/renv
             - ~/.cache/R/pkgcache:/home/rstudio/.cache/R/pkgcache
+            - ~/.cache/rstudio-server:/home/rstudio/.cache/rstudio
 
             # Global RStudio config
             - ~/.config/rstudio-server:/home/rstudio/.config/rstudio
